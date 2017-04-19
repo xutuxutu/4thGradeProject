@@ -1,3 +1,5 @@
 *.FBX
 *.FBX.meta
 Library/
+Temp/
+.vs/

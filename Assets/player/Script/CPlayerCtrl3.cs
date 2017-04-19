@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyDebug;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
@@ -138,6 +139,7 @@ public class CPlayerCtrl3 : MonoBehaviour
     
     public void fUpdate ()
     {
+        CDebug.Log(DebugType.PLAYER_ACTION_STATE, curActionState);
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (!CGameManager.instance.cameraCtrl.cameraEvent)

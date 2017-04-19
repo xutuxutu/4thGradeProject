@@ -62,5 +62,6 @@ public class CGameManager : MonoBehaviour
     private void LateUpdate()
     {
         cameraCtrl.fLateUpdate();
+        playerCtrl.fLateUpdate();
     }
 }

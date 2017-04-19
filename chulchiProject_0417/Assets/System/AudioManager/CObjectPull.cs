@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyDebug;
 
 public class CObjectPool<T> where T : CPoolableObject
 {
@@ -47,7 +48,7 @@ public class CObjectPool<T> where T : CPoolableObject
         if (stack.Count <= 0)
         {
             Allocate();
-            Debug.Log( DebugType.ETC, "Pool 부족으로 추가 오브젝트 생성, 현재 " + curPoolSize + "개");
+            CDebug.Log(DebugType.ETC, "Pool 부족으로 추가 오브젝트 생성, 현재 " + curPoolSize + "개");
         }
         
         T obj = stack.Pop();

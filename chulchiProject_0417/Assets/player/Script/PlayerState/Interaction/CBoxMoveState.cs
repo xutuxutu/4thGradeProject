@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MyDebug;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,6 @@ public class CBoxMoveState : CMoveState
     public override void fEnterState(CPlayerCtrl3 player)
     {
         base.fEnterState(player);
-        Debug.Log(DebugType.PLAYER_ACTION_STATE, "박스 무빙");
         firstDir = player.viewDir;
         curAccelSpeed = player.moveValueStruct.boxMoveSpeed;
         curMaxSpeed = player.moveValueStruct.maxBoxMoveSpeed;
@@ -19,7 +19,6 @@ public class CBoxMoveState : CMoveState
 
     public override CPlayerActionState fUpdateState(CPlayerCtrl3 player)
     {
-        Debug.Log(DebugType.PLAYER_ACTION_STATE, "박스 무빙 중");
         if (CInputMamager.instance.fGetKeyDown(INPUTSTATE.JUMP))
         {
             return CPlayerCtrl3.jumpState;

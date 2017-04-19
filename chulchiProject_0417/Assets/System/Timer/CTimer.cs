@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MyDebug;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ public class CTimer
             }
         }
         
-        Debug.Log(DebugType.ETC, timeState.hour + "시간 " + timeState.minute + "분 " + timeState.second + "초");
+        CDebug.Log(DebugType.ETC, timeState.hour + "시간 " + timeState.minute + "분 " + timeState.second + "초");
 	}
 
     

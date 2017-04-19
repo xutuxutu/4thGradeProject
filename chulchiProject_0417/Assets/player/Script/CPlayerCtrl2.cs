@@ -70,11 +70,13 @@ public class CPlayerCtrl2 : MonoBehaviour {
 
     public void fAwake()
     {
+        
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         input = CGameManager.instance.inputManager;
         oldActionState = new Dictionary<PLAYER_STATE2, PLAYER_STATE2>();
     }
+    
 	public void fStart()
     {
         playerState.actionState = PLAYER_STATE2.IDEL;

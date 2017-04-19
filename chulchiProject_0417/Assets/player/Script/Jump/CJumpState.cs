@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MyDebug;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -101,7 +102,7 @@ public class CJumpState : CInteractionState
     }
     public void fMove_RunJump(CPlayerCtrl3 player)
     {
-        Debug.Log(DebugType.PLAYER_ACTION_STATE, "달리기점프중");
+        CDebug.Log(DebugType.PLAYER_ACTION_STATE, "달리기점프중");
         speedY += player.jumpValueStruct.customGravity * Time.deltaTime;
         player.ControllerMove(new Vector3(speedX * (int) player.viewDir, speedY, 0));
 

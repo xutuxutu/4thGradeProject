@@ -1,7 +1,10 @@
-﻿using System;
+﻿using MyDebug;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 
 public class CInteractionState : CPlayerActionState
 {
@@ -29,7 +32,7 @@ public class CInteractionState : CPlayerActionState
 
     public override void fExitState(CPlayerCtrl3 player)
     {
-        Debug.Log(DebugType.PLAYER_ACTION_STATE, "인터렉트 끝");
+        CDebug.Log(DebugType.PLAYER_ACTION_STATE, "인터렉트 끝");
         curInteractState.fExitState(player);
         player.InteractObjectTrigger.fEndEvent();
     }

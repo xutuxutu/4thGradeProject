@@ -53,6 +53,18 @@ public class CPlayerCtrl3 : MonoBehaviour
     [Space(10)]
     public AppointJumpValueStruct jumpValueStruct;
 
+    [System.Serializable]
+    public struct PhysicalStatus
+    {
+        public int maxHp;
+        public float maxStamina;
+
+        public int hp;
+        public float stamina;
+    }
+    [Space(10)]
+    public PhysicalStatus physicalStatus;
+
     public struct ZMoveInfo
     {
         public bool hasOhterVector;
@@ -61,6 +73,8 @@ public class CPlayerCtrl3 : MonoBehaviour
 
     }
     public ZMoveInfo zMoveInfo;
+
+
 
     [Space(10)]
     public float groundCheckDistance = 0.6f;
@@ -76,11 +90,6 @@ public class CPlayerCtrl3 : MonoBehaviour
     private Vector3 groundNormal;
 
 
-    //public bool hasOhterVector;
-    //public Vector3 moveOtherVector;
-    //public Quaternion moveOtherRot;
-    
-
     [System.NonSerialized] public Transform wallTr;
     [System.NonSerialized] public CharacterController controller;
     [System.NonSerialized] public Animator animator;
@@ -88,22 +97,46 @@ public class CPlayerCtrl3 : MonoBehaviour
     public PLAYER_VIEW_DIR viewDir;
     public IInteractiveObject InteractObjectTrigger;
 
-
-    public void fAwake()
+    #region 초기화
+    void fPhysicalStatusInit()
     {
-        playerColider = GetComponentInChildren<CPlayerColider>();
-        playerColider.fAwake();
-        viewDir = PLAYER_VIEW_DIR.RIGHT;  
-        controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        physicalStatus.hp = physicalStatus.maxHp;
+        physicalStatus.stamina = physicalStatus.maxStamina;
+    }
+
+    void fAcrionStateInit()
+    {
         oldAcrionState = idelState;
         curActionState = idelState;
         curActionState.fEnterState(this);
-        canHanging = false;
-        isZmove = false;
     }
 
-	public void fUpdate ()
+    void fComponentInit()
+    {
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        playerColider = GetComponentInChildren<CPlayerColider>();
+        playerColider.fAwake();
+    }
+
+    void fOtherVariable()
+    {
+        canHanging = false;
+        isZmove = false;
+        viewDir = PLAYER_VIEW_DIR.RIGHT;
+    }
+    #endregion
+
+    public void fAwake()
+    {
+        fComponentInit();
+        fAcrionStateInit();
+        fOtherVariable();
+        fPhysicalStatusInit();
+    }
+
+    
+    public void fUpdate ()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -121,16 +154,25 @@ public class CPlayerCtrl3 : MonoBehaviour
         CheckGroundStatus();
         ChackWallState();
 
+        fActionStateUpdate();
+        Move(this);
+    }
+
+
+    #region 상태 머신
+    void fActionStateUpdate()
+    {
         CPlayerActionState returnActionState = curActionState.fUpdateState(this);
-        if(returnActionState != null)
+        if (returnActionState != null)
         {
             curActionState.fExitState(this);
             oldAcrionState = curActionState;
             curActionState = returnActionState;
             curActionState.fEnterState(this);
         }
-        Move(this);
     }
+
+    #endregion
 
     #region 키 입력 처리
     private void fCurInputsUpdate()
@@ -280,6 +322,7 @@ public class CPlayerCtrl3 : MonoBehaviour
     #endregion
 
     #region 이벤트 함수
+    // 위로 올라가는 애니메이션 후 강제 이동
     public void fEndEvnet_HangUp()
     {
         transform.position += new Vector3((int)viewDir * 0.81f, 1.46f);

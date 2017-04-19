@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyDebug;
+
 
 public class CMovableBox : CInteractiveObject
 {
     public void Awake()
     {
         fInit();
+        
     }
 
     public new void fInit()
@@ -47,7 +50,7 @@ public class CMovableBox : CInteractiveObject
     {
         RaycastHit hit;
         LayerMask mask = ~(1 << 8);
-
+        
         if (Physics.Raycast(transform.position, transform.right * (int)state, out hit, 2.0f, mask))
         {
             if(!hit.collider.CompareTag("UpHill"))

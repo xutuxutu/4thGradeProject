@@ -1,6 +1,16 @@
-﻿using System.Collections;
+﻿using MyDebug;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
+
+
+ public enum DebugType
+ {
+     ETC = 1 << 0,
+     PLAYER_ACTION_STATE = 1 << 1,
+     OBJECT_STATE = 1 << 2,
+ }
 
 public class CGameManager : MonoBehaviour
 {
@@ -13,7 +23,7 @@ public class CGameManager : MonoBehaviour
     public CEventManager eventManager { get; private set; }
     public CMainCameraCtrl cameraCtrl { get; private set;}
     public CPlayerCtrl3 playerCtrl;
-    private Debug debug;
+    private CDebug debug;
     private CTimer timer;
     private void Awake()
     {
@@ -24,7 +34,7 @@ public class CGameManager : MonoBehaviour
         eventManager = gameObject.AddComponent<CEventManager>();
         cameraCtrl = Camera.main.GetComponent<CMainCameraCtrl>();
 
-        debug = new Debug();
+        debug = new CDebug(DebugType.PLAYER_ACTION_STATE, DebugType.OBJECT_STATE);
         timer = new CTimer();
 
         audioManager.fAwake();

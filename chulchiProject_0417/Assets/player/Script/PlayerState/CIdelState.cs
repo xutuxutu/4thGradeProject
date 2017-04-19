@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyDebug;
+using System;
 using UnityEngine;
 
 /*
@@ -31,7 +32,7 @@ public class CIdelState : CPlayerActionState
             return CPlayerCtrl3.interactionState;
         else
         {
-            Debug.Log(DebugType.PLAYER_ACTION_STATE, "대기 중");
+            CDebug.Log(DebugType.PLAYER_ACTION_STATE, "대기 중");
             return null;
         }
     }

@@ -6,10 +6,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{16D9227B-9862-BD42-F96A-C17910FD376A}</ProjectGuid>
+    <ProjectGuid>{3D87BE06-B01A-71A8-5D92-875C3C7255F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -46,56 +46,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CZMover.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\01.Animation\Anim_DoorStateCtrl.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\02.Object\01.Interface\IInteractiveObject.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\02.Object\02.Class\01. Object\CDoor.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\02.Object\02.Class\01. Object\CHingedDoor.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\02.Object\02.Class\01. Object\CInteractiveObject.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\02.Object\02.Class\01. Object\CMovableBox.cs" />
-     <Compile Include="Assets\InteractiveObject\02.Script\03.Global\CObjectManager.cs" />
-     <Compile Include="Assets\System\AudioManager\CAudioManager.cs" />
-     <Compile Include="Assets\System\AudioManager\CAudioObject.cs" />
-     <Compile Include="Assets\System\AudioManager\CObjectPull.cs" />
-     <Compile Include="Assets\System\Debug\Debug.cs" />
-     <Compile Include="Assets\System\EventSender\CEventManager.cs" />
-     <Compile Include="Assets\System\GameManager\CGameManager.cs" />
-     <Compile Include="Assets\System\Input\CInputChangeUI.cs" />
-     <Compile Include="Assets\System\Input\CInputMamager.cs" />
-     <Compile Include="Assets\System\Timer\CTimer.cs" />
-     <Compile Include="Assets\Test.cs" />
-     <Compile Include="Assets\player\Script\Anim_ChrTurnCtrl.cs" />
-     <Compile Include="Assets\player\Script\Anim_StateChecker.cs" />
-     <Compile Include="Assets\player\Script\CLaser.cs" />
-     <Compile Include="Assets\player\Script\CMainCameraCtrl.cs" />
-     <Compile Include="Assets\player\Script\CPlayerColider.cs" />
-     <Compile Include="Assets\player\Script\CPlayerCtrl.cs" />
-     <Compile Include="Assets\player\Script\CPlayerCtrl2.cs" />
-     <Compile Include="Assets\player\Script\CPlayerCtrl3.cs" />
-     <Compile Include="Assets\player\Script\Jump\CJumpState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\CHangState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\CIdelState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\CPlayerActionState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\Interaction\CBoxMoveState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\Interaction\CInteractionState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\MoveState\CMoveState.cs" />
-     <Compile Include="Assets\player\Script\PlayerState\MoveState\CRunState.cs" />
-     <Compile Include="Assets\player\Script\SimpleCamera.cs" />
-     <Compile Include="Assets\player\Script\TriggerEvent.cs" />
+     <Compile Include="Assets\System\Editor\DebugConsole.cs" />
+ <Reference Include="UnityEditor.Advertisements">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.EditorTestsRunner">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Networking">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.PlaymodeTestsRunner">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/Editor/UnityEditor.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.PlaymodeTestsRunner">
  <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.TreeEditor">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Analytics">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.HoloLens">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.VR">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
@@ -103,6 +98,16 @@
  <Reference Include="MyDebug">
  <HintPath>C:/Users/JW/Git/4thGradeProject/Assets/Plugins/MyDebug.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+ <HintPath>E:/ProgramFile/Unity5.51/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{16D9227B-9862-BD42-F96A-C17910FD376A}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

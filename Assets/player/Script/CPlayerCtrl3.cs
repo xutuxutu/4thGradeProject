@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEditorInternal;
 using UnityEngine;
-
+using RootMotion.FinalIK;
 
 public class CPlayerCtrl3 : MonoBehaviour
 {
@@ -24,6 +24,11 @@ public class CPlayerCtrl3 : MonoBehaviour
     public static CHangState hangState = new CHangState();
     static public CInteractionState interactionState = new CInteractionState();
 
+    //IK관련 변수
+    public LimbIK[] limbIK; // reference to the LimbIK component
+    public Transform[] foot;
+    public Transform[] knee;
+    public float ground;
 
     [System.Serializable]
     public struct AppointMoveValueStruct
@@ -158,6 +163,11 @@ public class CPlayerCtrl3 : MonoBehaviour
 
         fActionStateUpdate();
         Move(this);
+    }
+
+    public void fLateUpdate()
+    {
+        fSetFootPosition_IK();
     }
 
 
@@ -328,6 +338,75 @@ public class CPlayerCtrl3 : MonoBehaviour
     public void fEndEvnet_HangUp()
     {
         transform.position += new Vector3((int)viewDir * 0.81f, 1.46f);
+    }
+    #endregion
+
+    #region IK
+    public void fSetFootPosition_IK()
+    {
+        RaycastHit hit;
+        LayerMask mask = (1 << 8) | (1 << 10) | (1 << 11);
+        mask = ~mask;
+
+        //경사도에 따른 충돌체 크기 조절
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, -Vector3.up, out hit, 1.0f, mask))
+        {
+            float angle = Vector3.Dot(Vector3.right, hit.normal);
+            angle = (Mathf.Acos(angle) * Mathf.Rad2Deg - 90);
+
+            if (angle < 30 && angle > 0)
+            {
+                float height = 1.6f - (angle / 100);
+                controller.height = (controller.height + height) / 2;
+            }
+        }
+
+        //왼발 위치 및 각도 설정
+        if (limbIK[0] != null)
+        {
+
+            Vector3 hitNormal = Vector3.up;
+            Vector3 hitPoint = foot[0].position;
+            //Debug.DrawRay(foot[0].position + Vector3.up * 0.5f, -Vector3.up, Color.red, 0.6f);
+            if (Physics.Raycast(foot[0].position + Vector3.up * 0.5f, -Vector3.up, out hit, 0.6f, mask))
+            {
+                hitNormal = hit.normal;
+                hitPoint = hit.point + Vector3.up * ground;
+            }
+
+            float angle = Vector3.Dot(Vector3.right, hitNormal);
+            angle = (Mathf.Acos(angle) * Mathf.Rad2Deg - 90) * (int)viewDir;
+
+            Vector3 a = foot[0].eulerAngles - new Vector3(-2, 82, 92);
+            a = new Vector3(a.z - angle, a.y, a.x);
+            limbIK[0].solver.SetIKRotation(Quaternion.Euler(a));
+
+            limbIK[0].solver.SetIKPosition(hitPoint);
+
+            limbIK[0].solver.bendNormal = knee[0].forward;
+        }
+        //오른발 위치 및 각도 설정
+        if (limbIK[1] != null)
+        {
+            Vector3 hitNormal = Vector3.up;
+            Vector3 hitPoint = foot[1].position;
+            //Debug.DrawRay(foot[1].position + Vector3.up * 0.5f, -Vector3.up, Color.red, 0.6f);
+            if (Physics.Raycast(foot[1].position + Vector3.up * 0.5f, -Vector3.up, out hit, 0.6f, mask))
+            {
+                hitNormal = hit.normal;
+                hitPoint = hit.point + Vector3.up * ground;
+            }
+
+            float angle = Vector3.Dot(Vector3.right, hitNormal);
+            angle = (Mathf.Acos(angle) * Mathf.Rad2Deg - 90) * (int)viewDir;
+
+            Vector3 a = foot[1].eulerAngles - new Vector3(-2, 82, 92);
+            a = new Vector3(a.z, a.y, a.x);
+            limbIK[1].solver.SetIKRotation(Quaternion.Euler(a));
+
+            limbIK[1].solver.SetIKPosition(hitPoint);
+            limbIK[1].solver.bendNormal = knee[1].forward;
+        }
     }
     #endregion
 }

@@ -19,8 +19,9 @@ public class CObjectManager
     {
         switch (object_Type)
         {
-            case OBJECT_TYPE.DOOR:  return 2f;
-            case OBJECT_TYPE.BOX:   return 2f;
+            case OBJECT_TYPE.DOOR:      return 2f;
+            case OBJECT_TYPE.BOX:       return 2f;
+            case OBJECT_TYPE.LADDER:    return 0.2f;
             default: return -9999;
         }
     }
@@ -35,8 +36,9 @@ public class CObjectManager
         // 우선순위 (숫자가 높을 수록 순위가 높음)
         switch (object_Type)
         {
-            case OBJECT_TYPE.DOOR: return 1;
-            case OBJECT_TYPE.BOX: return 2;
+            case OBJECT_TYPE.DOOR:   return 2;
+            case OBJECT_TYPE.BOX:    return 3;
+            case OBJECT_TYPE.LADDER: return 1;
             default: return -9999;
         }
     }
